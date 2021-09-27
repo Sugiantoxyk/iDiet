@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="{{ url_for("static", filename="images/Board.png") }}">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/skeleton.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/policies.css") }}" rel="stylesheet">
+	</head>
+	<body>
+
+        <nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+            <div class="navbar-header" id="topLeft">
+                <a href="/">
+                    <img id="logo" src="{{ url_for("static", filename="images/Logo Reverse.png") }}">
+                </a>
+                <button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-right" id="topRight">
+                <ul class="nav navbar-nav" id="navList">
+                    <li class="active1"><a href="/">Home</a></li>
+                    <li><a href="/recipe">Recipe</a></li>
+                    <li><a href="/health">My Health</a></li>
+                    <li><a href="/fun">Fun</a></li>
+                    <li><a href="/community">Community</a></li>
+                </ul>
+
+                {% if user != null%}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: {{ user["displaypicturecolor"] }}">
+                        <img id="displayPic" src={{ user["displaypicture"] }}>
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% elif admin != null %}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #FF7200">
+                        <img id="displayPic" src="/static/images/admin.png">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi Admin, <span>{{ admin["username"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% else %}
+                    <a type="button" class="btn btn-default" id="loginButton" href="/login">Sign In</a>
+                {% endif %}
+            </div>
+        </nav>
+		
+		<div id="policiesTop"><!--BODY-->
+			<img id="policiesTopImage" src="{{ url_for("static", filename="images/policies.jpg") }}">
+			<div id="policiesTopTextBox">
+				<p id="policiesTopText">Privacy</p>
+			</div>
+		</div>
+		<div id="policiesBack">
+			<div class="container">
+				<div id="breadcrumb">
+					<a href="/" id="breadcrumbHome">Home</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span id="breadcrumbHere">Privacy</span>
+				</div>
+				<br/>
+				<p id="policiesTitle">Privacy</p>
+				<hr/>
+				<div id="policiesText">
+					<p>iDiet does not share customer information of any kind with anyone. We will not sell or rent your name or personal 
+					information to any third party. We do not sell, rent or provide outside access to our mailing list or any data we store. 
+					Any data that a user stores via our facilities is wholly owned by that user or business. At anytime a user or business is free to 
+					unsubscribe and leave, or to simply delete their account from our facilities.</p>
+					<br/>
+					<p>iDiet only collects such personal information that is necessary for you to access and use our services. 
+					This personal information includes, but is not limited to, first and last name, email address, birth date and other personal 
+					information necessary to generate proper legal documents.</p>
+					<br/>
+					<p>iDiet may release personal information if required by law, search warrant, subpoena, court order or fraud investigation. 
+					We may also use personal information in a manner that does not identify you specifically nor allow you to be contacted 
+					but does identify certain criteria about our Site's users in general (such as we may inform third parties about the number 
+					of registered users, number of unique visitors, and the pages most frequently browsed).</p>
+					<br/>
+					<p class="policiesTextSubText">Device-specific data</p>
+					<br/>
+					<p>The following information may be collected through your device and browser:</p>
+					<ul>
+						<li>Your device's IP address (collected and stored in an anonymized format).</li>
+						<li>Device screen size.</li>
+						<li>Device type (unique device identifiers) and bowser information.</li>
+						<li>Geographic location (country only).</li>
+						<li>Preferred language used to display the webpage.</li>
+					</ul>
+					<br/>
+					<p class="policiesTextSubText">Log data</p>
+					<br/>
+					<p>iDiet occasionally uses the AdRoll display advertising network to collect visitor data on our site and then serve 
+					targeted display ads to you on other sites. Our partners use technology such as cookies and web beacons to collect this data.</p>
+					<br/>
+					<p>iDiet uses Facebook advertising and retargeting. Cookies and pixels are used to understand and deliver ads 
+					and make them more relevant to you. We may also use a cookie to learn whether someone who saw an ad on Facebook later visited our website.</p>
+				</div>
+			</div>
+		</div>
+
+		{% include 'includes/_footer.html' %}
+
+	</body>
+</html>

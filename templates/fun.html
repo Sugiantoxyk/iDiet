@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="{{ url_for("static", filename="images/Board.png") }}">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/skeleton.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/fun.css") }}" rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+            <div class="navbar-header" id="topLeft">
+                <a href="/">
+                    <img id="logo" src="{{ url_for("static", filename="images/Logo Reverse.png") }}">
+                </a>
+
+                <button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right" id="topRight">
+                <ul class="nav navbar-nav" id="navList">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/recipe">Recipe</a></li>
+                    <li><a href="/health">My Health</a></li>
+                    <li class="active1"><a href="/fun">Fun</a></li>
+                    <li><a href="/community">Community</a></li>
+                </ul>
+
+                {% if user != null%}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: {{ user["displaypicturecolor"] }}">
+                        <img id="displayPic" src={{ user["displaypicture"] }}>
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% elif admin != null %}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #FF7200">
+                        <img id="displayPic" src="/static/images/admin.png">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi Admin, <span>{{ admin["username"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% else %}
+                    <a type="button" class="btn btn-default" id="loginButton" href="/login">Sign In</a>
+                {% endif %}
+            </div>
+
+        </nav>
+
+        <div id="funTop"><!--BODY-->
+            <img id="funTopImage" src="{{ url_for("static", filename="images/funbackground.jpg") }}">
+            <div id="funTopTextBox">
+                <p id="funTopText">Fun</p>
+            </div>
+        </div>
+
+        {% if admin != null %}
+            <div id="mainBox">
+                <div class="container">
+                    <h1 id="admin1Text">View all facts</h1>
+                    <hr/>
+                    <table>
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No.</th>
+                                <th>Facts</th>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                    <a id="addRowButton" onclick="addRow()">Add new facts</a>
+                    <hr/>
+                </div>
+            </div>
+        {% else %}
+            <div id="mainBox">
+                <div id="mainFun1">
+                    <div class="container">
+                        <p id="fun1TopText">Click on the cube to learn more facts! <img id="fun1Achievement" src="static/images/Achievement4.png"></p>
+                        <div class="scene">
+                            <div class="cube">
+                                <div class="cube-face  cube-face-front" id="X0deg"></div>
+                                <div class="cube-face  cube-face-back" id="Y180deg"></div>
+                                <div class="cube-face  cube-face-left" id="Y90deg"></div>
+                                <div class="cube-face  cube-face-right" id="Y-90deg"></div>
+                                <div class="cube-face  cube-face-top" id="X-90deg"></div>
+                                <div class="cube-face  cube-face-bottom" id="X90deg"></div>
+                            </div>
+                        </div>
+                        <p id="fun1BotText">
+                            <span id="fun1Seen">0</span> / <span id="fun1Max">0</span> facts seen
+                        </p>
+                    </div>
+                </div>
+                <div id="mainFun2">
+
+                </div>
+                <div id="mainFun3">
+                    <a type="button" class="btn btn-default" id="challengeButton" data-toggle="modal" data-target="#challengeModal">Challenge 1
+                    <img class="achievements" id="OutsideAchieve1" src="static/images/Achievement1.png"></a>
+                    <a type="button" class="btn btn-default" id="challengeButton2" data-toggle="modal" data-target="#challengeModal">Challenge 2
+                    <img class="achievements" id="OutsideAchieve2" src="static/images/Achievement2.png"></a>
+                    <a type="button" class="btn btn-default" id="challengeButton3" data-toggle="modal" data-target="#challengeModal">Challenge 3
+                    <img class="achievements" id="OutsideAchieve3" src="static/images/Achievement3.png"></a>
+                    <p id="mainFun3Text">Test your knowledge on basic food recipes and health facts!</p>
+                </div>
+            </div>
+        {% endif %}
+
+        {% include 'includes/_footer.html' %}
+
+        <!--Modal-->
+		<div class="modal fade" id="challengeModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" id="modalTopClose" class="close" data-dismiss="modal">&times;</button>
+						<div id="modalTop">
+                            <div class="col-md-4">
+                                <p id="showScore">No previous records</p>
+                            </div>
+                            <div class="col-md-4">
+                                 <p id="modalTopText1">Challenge&nbsp;<span id="challengeNumber">"number"</span></p>
+                            </div>
+                            <div class="col-md-3">
+                                <img id="achievements" src="">
+                            </div>
+						</div>
+					</div>
+					<div class="modal-body">
+						<p id="modalBodyText">Question <span id="questionNumber">"number"</span></p>
+						<p id="modalBodyQuestion">"JS"</p>
+                        <span id="errorMessage"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Please select one of these options.</span>
+						<form>
+							<div class="radio">
+								<label><input type="radio" id="A" name="opt" /><span id="C1">"JS"</span></label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" id="B" name="opt" /><span id="C2">"JS"</span></label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" id="C" name="opt" /><span id="C3">"JS"</span></label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" id="D" name="opt" /><span id="C4">"JS"</span></label>
+							</div>
+                            <button id="modalBodyNext" type="button" onclick="hi()" class="btn">Next Question</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="progress">
+							<div id="modalProgress" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+								<span id="modalProgressNo">0</span>%
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div id="containerCon" class="container-fluid">
+            <div id="UnlockAlertBox">
+                <div class="col-xs-3">
+                    <img id="AlertAchievement" src="static/images/unAchievement3.png">
+                </div>
+                <div class="col-xs-9">
+                    <div class="row">
+                        <p id="AlertUnlock">ACHIEVEMENT UNLOCK</p>
+                    </div>
+                    <div class="row">
+                        <span id="AlertText">ERROR.EXE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/js/fun.js"></script>
+        <script>
+            var allFunFacts = {{ allFunFacts|safe }};
+
+            {% if admin != null %}
+                adminUses(allFunFacts);
+            {% else %}
+                var user = {{ user|safe }}
+                setFunFacts(allFunFacts);
+                setFactsSeen({{ funSeen|safe }});
+                setCha1_2_3({{ cha1 }}, {{ cha2 }}, {{ cha3 }});
+            {% endif %}
+        </script>
+
+    </body>
+</html>

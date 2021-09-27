@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="../static/css/skeleton.css" rel="stylesheet">
+		<link href="../static/css/community.css" rel="stylesheet">
+		<link href="../static/css/forums.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+	</head>
+	<body>
+
+		{% include 'includes/_community_navbar.html' %}
+
+		<div><!--BODY-->
+			<div class="container">
+				<br/><br/><br/><br/><br/>
+				<div class="Breadcrumb">
+					<a href="/community" class="BreadcrumbHome">Community</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span class="BreadcrumbHere">Announcements</span>
+				</div>
+				<br/><br/><br/>
+				<h1><span class="glyphicon glyphicon-globe orange"></span> Announcements </h1>
+				{% if admin != null %}
+					<a href="/community/announcements/post">
+						<p class="btn btn-default" style="float: right;"> New Announcement </p>
+					</a>
+				{% endif %}
+
+				<br/><br/><br/>
+                {% for i in announcement %}
+                    <a href="{{ url_for('append3', announcement_url=i) }}">
+                        <div class="col-md-12 post">
+					        <p style="font-size: 24px"> {{ i }}  </p>
+				        </div>
+                    </a>
+                {% endfor %}
+				<h3> {{ noNews }} </h3>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</div>
+		</div>
+        <!--BOTTOM-->
+		{% include 'includes/_footer.html' %}
+	</body>
+</html>

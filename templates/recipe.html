@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recipe_decor.css') }}">
+    <link rel="icon" href="/static/images/Board.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+	<link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+    <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+
+    <script type="text/javascript">//<![CDATA[
+	window.onload=function(){
+
+			var list = document.getElementById('list');
+			var add = document.getElementById('add');
+
+			//adding a new element to the list
+			add.addEventListener('click', function(){
+			  var text = document.getElementById("ingredient").value;
+			  var newElement = document.createElement('li');
+			  list.appendChild(newElement);
+			  newElement.innerHTML = "<span> "+text+"</span> &nbsp <button class='btn listing' onclick='checkList()' id='delete'>x</button> ";
+			  checkList();
+			});
+
+			list.addEventListener('click', function(e){
+			  if(e.target && e.target.nodeName == "BUTTON") {
+					// List item found!  Output the ID!
+                  console.log("Button ", e, " was clicked!");
+
+                  // $("#delete").closest("#userInput");
+                  var userInputListItem =  e.target.parentNode;
+                  var userInput =  userInputListItem.getElementsByTagName("span")[0].innerText;
+                  deleteListItem(userInput);
+                  console.log(userInput);
+				  e.target.parentNode.remove();
+				  checkList();
+				}
+			});
+	}
+	</script>
+
+	<script type="text/javascript">
+
+            recipes = {{ name|safe }};
+            var listName = []; //All the food name
+            var userIngre = []; //User inpute ingredients
+
+
+            for(var hello = 0; hello < recipes.length; hello++){ //iterate thru the number of food in database and store the name in ListName
+                listName.push(recipes[hello]["name"]);
+            }
+
+            function addtolist() {
+                var text = document.getElementById("ingredient").value;
+                userIngre.push(text); //Push all user ingredient into list
+            }
+
+            function checkList() {
+                var x = document.getElementById("list").innerHTML;
+                if (x == "" && document.getElementById('healthy').checked && document.getElementById('healthy2').checked && (document.getElementById('fast').checked) && (document.getElementById('normal').checked)) {
+                    for (var i in listName) {
+                        var processId1 = listName[i].toLowerCase().replace(/ /g, "_");
+                        $("#" + processId1).css("display", "");
+                    }
+                } else {
+                    for (var u in listName) {
+                        var processId2 = listName[u].toLowerCase().replace(/ /g, "_");
+                        $("#" + processId2).css("display", "none");
+                    }
+                    checkCheckCheck();
+                }
+            }
+
+            function checkCheckCheck(){
+                for (var b in listName){
+                    var speed = recipes[b]["speed"];//to check for speed
+                    var healthy = recipes[b]["healthy"];//to check for healthy
+                    var ingredients = recipes[b]["item"];// to check for ingredient
+                    ingredients = ingredients.split(",");
+                    if ((document.getElementById('healthy').checked) && healthy == "yes"){
+                        hi2();
+                    }
+                    if((document.getElementById('healthy2').checked) && healthy == "no"){
+                        hi2();
+                    }
+
+                    function hi2(){
+                        if((document.getElementById('fast').checked) && speed == "fast"){
+                            hi();
+                        }
+                        if((document.getElementById('normal').checked) && speed == "normal"){
+                            hi();
+                        }
+                    }
+
+                    function hi(){
+                        if (userIngre[0] != null){
+                            for (var n in userIngre){
+                                var userIngredient = userIngre[n];
+                                if(ingredients.includes(userIngredient) == true){
+                                    var idididid = listName[b].toLowerCase().replace(/ /g, "_");
+                                    $("#"+idididid).css("display", "");
+                                }
+                            }
+                        }else{
+                            var idididid = listName[b].toLowerCase().replace(/ /g, "_");
+                            $("#"+idididid).css("display", "");
+                        }
+                    }
+                }
+            }
+
+            function deleteListItem(deItem){
+                var i = userIngre.indexOf(deItem);
+                userIngre.splice(i, 1);
+                console.log(userIngre);
+            }
+
+            function myFunction() {
+              var input, filter, table, tr, td, i;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+
+            function admin_delete(theButton) {
+                var recipe = $(theButton).parent().parent().attr("id");
+                if(confirm("Confirm delete this recipe?")){
+                    $.getJSON("/deleteRecipe", {nameId: recipe}, function(){
+                        location.reload();
+                    })
+                }
+
+            }
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+			<div class="navbar-header" id="topLeft">
+				<a href="/">
+					<img id="logo" src="/static/images/Logo Reverse.png">
+				</a>
+				<button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+
+			<div class="collapse navbar-collapse navbar-right" id="topRight">
+				<ul class="nav navbar-nav" id="navList">
+					<li><a href="/">Home</a></li>
+					<li class="active1"><a href="/recipe">Recipe</a></li>
+					<li><a href="/health">My Health</a></li>
+					<li><a href="/fun">Fun</a></li>
+					<li><a href="/community">Community</a></li>
+				</ul>
+				{% if user != null%}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color:{{ user["displaypicturecolor"] }}">
+                        <img id="displayPic"src="{{ user['displaypicture'] }}">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% elif admin != null %}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #FF7200">
+                        <img id="displayPic" src="/static/images/admin.png">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi Admin, <span>{{ admin["username"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% else %}
+                    <a type="button" class="btn btn-default" id="loginButton" href="/login">Sign In</a>
+                {% endif %}
+			</div>
+		</nav>
+        {% if admin != null %}
+            <div class="container">
+                <br><br><br><br><br><br>
+                <table>
+                    <thead style="background: rgba(0,0,0, 0.5); color: white; font-size: 25px;">
+                        <th id="adminTH" style="width:20%;">Photo</th>
+                        <th id="adminTH" style="width:30%;">Name</th>
+                        <th id="adminTH" style="width:15%;">Prep. time</th>
+                        <th id="adminTH" style="width:15%;">Cook time</th>
+                        <th id="adminTH" style="width:10%;">Calories(/100g)</th>
+                        <th id="adminTH" style="width:10%;"></th>
+                    </thead>
+                    <tbody style="background: rgba(255, 255, 255, 0.8);font-size: 20px;">
+                        {% for i in name %}
+                            <tr id="{{ i['id'] }}">
+                                <td><img id="photo" src="{{i['photo']}}"></td>
+                                <td style="text-align: center">{{i['name']}}</td>
+                                <td style="text-align: center">{{i['prep']}}</td>
+                                <td style="text-align: center">{{i['cook']}}</td>
+                                <td style="text-align: center">{{i['cal']}}</td>
+                                <td style="text-align: center;"><button style="margin-bottom: 2px;" onclick="location.href='/recipe/{{ i['id'] }}'" class="btn-info">Preview</button> <button onclick="admin_delete(this)" class="btn-danger">Delete</button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            <br><br>
+                <button onclick="location.href='/admin_recipe'" class="btn-success" style="font-size: 25px;">+ Add Recipe</button>
+            </div>
+            <br><br><br><br>
+        {% else %}
+            <div class="container-fluid content" style="padding: 100px;"><!--BODY-->
+                <div class="hi2">
+                        <p class='speech'>Home Ingredient</p>
+                    <ul class='hi'>
+                        <li style="text-align:center;">Ingredient: <input type="text" placeholder="Enter Ingredient" style="text-align:center;" id="ingredient"/><input type="button" id="add" value="Add" onclick="addtolist();"/></li>
+                        <li onload="myCheckbox()">
+                            <div class="choice" id="myBtnContainer">
+                            Healthy Food:
+                            <label><input type="checkbox" onclick="checkList()" id="healthy" name="healthy" value="yes" checked> Yes</label>
+                            <label><input type="checkbox" onclick="checkList()" id="healthy2" name="healthy2" value="no" checked> No</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="choice">
+                                Time to prepare:
+                                <label><input type="checkbox" onclick="checkList()" name="speed" id="fast" value="fast" checked> Fast</label>
+                                <label><input type="checkbox" onclick="checkList()" name="speed2" id="normal" value="normal" checked> Normal</label>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="choice" style="font-size:10px;">*Fast is less than 30 minutes*</p>
+                        </li>
+                        <div class="hi3">
+                            <li><ul id='list'></ul></li>
+                        </div>
+                    </ul>
+                </div>
+
+                <div style="margin-left:32%;padding:1px 16px;height:600px;">
+                    <form><input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for food"></form>
+                    <h2 style="color: white; font-weight: bold;">Welcome to Recipe</h2>
+                    <div class="recipe_box">
+                        <div class="recipe_box1">
+                            <div class="container">
+                                <table id="myTable">
+                                    <thead>
+                                      <tr class="header">
+                                        <th style="width:10%;">Photo</th>
+                                        <th style="width:30%;">Food</th>
+                                        <th style="width:20%;"><img id="Cook" src="static/images/Cook.png">Prep.</th>
+                                        <th style="width:20%;"><img id="Cook1" src="static/images/Cook1.png">Cook</th>
+                                        <th style="width:20%;">Calories(/100g)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="myTable1">
+                                    {% for i in name %}
+                                          <tr id="{{ i['id'] }}" onclick="location.href='/recipe/{{ i['id'] }}'">
+                                              <td><img id="photo" src="{{i['photo']}}"></td>
+                                              <td>{{i['name']}}</td>
+                                              <td>{{i['prep']}}</td>
+                                              <td>{{i['cook']}}</td>
+                                              <td id="item" style="display: none;">{{i['item']}}</td>
+                                              <td id="id-tag" style="display: none;">{{i['id']}}</td>
+                                              <td style="text-align: center">{{i['cal']}}</td>
+                                          </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+	{% include 'includes/_footer.html' %}
+</body>
+</html>

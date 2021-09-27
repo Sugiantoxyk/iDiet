@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+	padding: 0;
+}
+#photo {
+    width:300px;
+    height:200px;
+    border-radius: 10px;
+}
+#container {
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    padding-left: auto;
+    padding-right: auto;
+    font-size: 15px;
+}
+#photoBox {
+    width: 300px;
+    height: auto;
+    float: left;
+}
+#detailBox {
+    height: 80px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+}
+#Cook {
+	height: 25px;
+	width: 20px;
+	margin-right: 5px;
+}
+
+#Cook1 {
+    height: 20px;
+    width: 30px;
+	margin-right: 5px;
+}
+th {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    font-size: 18px;
+}
+td {
+    text-align: center;
+    padding-top: 1%;
+    font-size: 17px;
+}
+#nextRow {
+    width: 100%;
+    overflow: hidden;
+}
+#prepItem {
+    margin-top: 2%;
+    width: 300px;
+    float: left;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    margin-bottom: 2%;
+    font-size: 17px;
+}
+#method {
+    margin-top: 2%;
+    margin-left: 350px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    width: auto;
+    font-size: 17px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="/static/css/skeleton.css" rel="stylesheet">
+		<link href="/static/css/community.css" rel="stylesheet">
+		<link href="/static/css/forums.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+	</head>
+	<body>
+		{% include 'includes/_community_navbar.html' %}
+        {% from "includes/_formhelper.html" import render_field %}
+		<div><!--BODY-->
+			<div class="container">
+				<br/><br/><br/><br/><br/>
+				<div class="Breadcrumb">
+					<a href="/community" class="BreadcrumbHome">Community</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<a href="/community/recipes" class="BreadcrumbHome">Recipes</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span class="BreadcrumbHere">Post</span>
+				</div>
+				<br/><br/><br/>
+				<form method="POST" action="" >
+					{{ render_field(postR.name, class='form-control', required='required', placeholder='e.g. Chicken Tikka Masala') }}
+					<br/>
+					{{ render_field(postR.type, class='form-control black', required='required') }}
+					<br/>
+					{{ render_field(postR.prep_time, class='form-control', type='number', required='required') }}
+					<br/>
+					{{ render_field(postR.cooking_time, class='form-control', type='number', required='required') }}
+					<br/>
+					{{ render_field(postR.calories, class='form-control', type='number', required='required') }}
+					<br/>
+					{{ render_field(postR.ingredients, class='form-control', required='required', placeholder='e.g. Chicken,Yogurt,Cream,Tomato,Onion,Garlic,Ginger,Chili pepper,Coconut') }}
+					<br/>
+					{{ render_field(postR.recipes, class='form-control', required='required', rows='12') }}
+					<br/>
+                    {{ render_field(postR.submit, class='btn btn-default', required='required', value='Post') }}
+				</form>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</div>
+		</div>
+
+		<!--BOTTOM-->
+        {% include 'includes/_footer.html' %}
+
+	</body>
+</html>

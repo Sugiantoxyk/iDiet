@@ -1,0 +1,71 @@
+/*Image*/
+#policiesTop{
+	position: relative;
+}
+#policiesTopImage{
+	width: 100%;
+}
+#policiesTopTextBox{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: 25%;
+}
+#policiesTopText{
+	color: #808080;
+	letter-spacing: -1px;
+	font-size: 5vw;
+}
+
+
+/*Breadcrumb*/
+#policiesBack{
+	background-color: white;
+}
+#breadcrumb{
+	font-size: 12px;
+	margin-top: 30px;
+}
+#breadcrumbHome{
+	color: #808080;
+	transition: all .3s ease-in-out;
+}
+#breadcrumbHome:hover{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+#breadcrumbHere{
+	font-weight: bold;
+}
+
+
+/*Text*/
+#policiesTitle{
+	font-size: 45px;
+	letter-spacing: -1px;
+}
+hr{
+	margin-top: 0px;
+	border-color: #FF7200;
+}
+
+
+#policiesText{
+	font-size: 16px;
+	margin-bottom: 50px;
+}
+#policiesText li:before{
+	content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 9px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #FF7200;
+}
+#policiesText li{
+	list-style: none;
+}
+.policiesTextSubText{
+	font-weight: bold;
+}

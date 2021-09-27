@@ -1,0 +1,184 @@
+body {
+    margin: 0;
+	padding: 0;
+}
+
+.speech {
+	font-size: 30px;
+	text-align: center;
+	background-color: #434343;
+	color: white;
+	padding: 7px 7px 7px 7px;
+}
+
+.choice {
+	text-align: center;
+}
+
+div.hi2 {
+	margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #FF9254;
+    position: absolute;
+	left: 120px;
+    height: 580px;
+}
+
+ul.hi {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    height: 480px;
+	font-weight: bold;
+}
+
+div.hi3 {
+	overflow-y: auto; 
+	height: 400px;
+}
+
+li a.hi1 {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+	text-align: center;
+    text-decoration: none;
+}
+
+li a.active.hi1 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a:hover:not(.active).hi1 {
+    background-color: #555;
+    color: white;
+}
+
+.col-sm-3 {
+	text-align: center;
+}
+
+input[type=text].search {
+    width: 270px;
+    box-sizing: border-box;
+    border: 2px solid #FF9254;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus.search {
+    width: 850px;
+}
+
+#photo {
+	width: 200px;
+	height: 120px;
+}
+
+p.Des {
+	text-align:left;
+	margin-left:5px;
+	margin-right:5px;
+	height: 10px;
+	width: 230px;
+	word-break: break-all; 
+	word-wrap: break-word;
+}
+
+p.Des1 {
+	text-align:left;
+	margin-left:5px;
+	margin-right:5px;
+	height: 50px;
+	width: 230px;
+	color:white;
+	overflow-y: auto;
+	white-space: pre-wrap;;
+}
+
+div.recipe_box {
+	height: 460px;
+	width: 850px; 
+	border: 2px solid #434343;
+	border-radius: 8px;
+}
+div.recipe_box1 {
+	height: 455px; 
+	width: 845px; 
+	background-image: url(../images/board1.png);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#Cook {
+	height: 25px;
+	width: 20px;
+	margin-right: 5px;
+}
+
+#Cook1 {
+    height: 20px;
+    width: 30px;
+	margin-right: 5px;
+}
+
+.listing {
+    align: center;
+    height: 20px;
+    font-size: 12px;
+	padding-top: 0;
+}
+
+#myTable {
+	  border-collapse: collapse;
+	  width: 800px;
+	  border: 1px solid #ddd;
+	  font-size: 18px;
+	  background: rgba(255, 146, 84, 0.5);
+}
+
+#myTable th, #myTable td {
+	  text-align: left;
+	  padding: 12px;
+}
+
+#myTable tr {
+	  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header {
+		background-color: #434343;
+		color: white;
+}
+
+#myTable1 tr:hover {
+	  background-color: #FF9254;
+	  cursor: pointer;
+}
+
+#filter {
+	border: none;
+	outline: none;
+	background-color: #f1f1f1;
+	cursor: pointer;
+	height: 30px;
+	margin-top: 5px;
+}
+
+#filter .btn:hover, .active {
+	background-color: #ccc;
+}
+
+#adminTH {
+	text-align: center;
+}

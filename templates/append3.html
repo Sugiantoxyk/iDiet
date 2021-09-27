@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="/static/css/skeleton.css" rel="stylesheet">
+		<link href="/static/css/community.css" rel="stylesheet">
+		<link href="/static/css/forums.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+        <script>
+            var i = "{{ i }}";
+            var userID = "{{ userID|safe }}";
+            function postComment(){
+                $.getJSON("/addComment3", {comment: $("#comment").val(), posterAID: i, userID: userID}, function(hello){
+                    if(hello == false){
+                        alert("Please login as a user to post a comment.");
+                    }
+                });
+                location.reload();
+            }
+        </script>
+	</head>
+	<body>
+		{% include 'includes/_community_navbar.html' %}
+		<div><!--BODY-->
+			<div class="container bordergrey">
+				<br/><br/><br/><br/><br/>
+				<div class="Breadcrumb">
+					<a href="/community" class="BreadcrumbHome">Community</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<a href="/community/announcements" class="BreadcrumbHome">Announcements</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span class="BreadcrumbHere"> {{ announced }} </span>
+				</div>
+				<br/><br/>
+				<img src="/static/images/board.png" alt="board" width="128px" style="float: left;"/>
+				<br/>
+				<p class="head" id="announced"> {{ announced }} </p>
+				<hr/>
+				<br/><br/><br/>
+				<img src="/static/images/admin.png" alt="PROFILE" style="float: left; border: 1px solid white; width: 96px;height: 96px;background-color: #FF7200" />
+				<p class="juicy">&nbsp {{ posterA["username"] }}</p>
+				<p class="juicy"><b> &nbsp Admin </b></p>
+				<br/>
+				<br/><br/><br/>
+					<p class="juicy newline" id="contented"> {{ contented }} </p>
+				<br/><br/><br/>
+                {% if admin != null %}
+                    <button type="button" id="announceBtn" class="btn btn-default editBtn" data-toggle="modal" data-target="#editGeneral">Edit</button>
+                {% endif %}
+                <div class="modal fade" id="editGeneral" role="dialog">
+                    <div class="modal-dialog modal-lg" style="padding-top: 100px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title black">Edit Post</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div>
+                                        <label for="announceTitle" class="black">Announcement: </label>
+                                        <input type="text" class="form-control" id="announceTitle" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="announceText" class="black">Content: </label>
+                                        <textarea class="form-control" id="announceText" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" id="updatePostA">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<hr/>
+				<br/><br/><br/>
+                {% for i in comments %}
+                    <img src="{{ alluser[comments[i]["userID"]]["displaypicture"] }}" style="float:left; border: 1px solid white; width: 32px;height: 32px; background-color: {{ alluser[comments[i]["userID"]]["displaypicturecolor"] }};">
+                    <br/><br/><br/><br/><br/>
+                    <p class="juicy newline">{{ comments[i]["comment"] }}</p>
+                    <p style="float: right"><i>commented by {{ alluser[comments[i]["userID"]]["firstname"]+" "+alluser[comments[i]["userID"]]["lastname"] }}</i></p>
+                        <br/>
+                        <hr/>
+                {% endfor %}
+
+                {% if admin == null %}
+                    <label for="comment"></label><p style="font-size: 20px;">Comments</p>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    <br/>
+                    <input type="submit" class="btn btn-default" onclick="postComment()"/>
+                    <br/><br/><br/>
+                    <hr/>
+                {% endif %}
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</div>
+		</div>
+		<!--BOTTOM-->
+        {% include 'includes/_footer.html' %}
+        <script>
+            var k = "{{ i }}";
+            $("#announceBtn").click(function(){
+                $("#announceTitle").val($("#announced").text());
+                $("#announceText").val($("#contented").text());
+            });
+
+                $("#updatePostA").click(function () {
+                    var announcement = $("#announceTitle").val();
+                    var content = $("#announceText").val();
+                    $.getJSON("/announcementUpdate", {announcement: announcement, content: content, posterA: k}, function() {
+                        location.replace("http://127.0.0.1:5000/community/announcements");
+                    })
+                })
+        </script>
+
+	</body>
+</html>

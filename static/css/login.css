@@ -1,0 +1,167 @@
+body{
+	background: url(../images/loginbackground.jpeg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+a:active, a:visited, a:link{
+	text-decoration: none;
+}
+
+/*Top*/
+#textTopLeft{
+	margin: 20px 0 0 20px;
+	font-size: 15px;
+}
+.glyphicon-triangle-right, .glyphicon-triangle-left{
+	color: #FF7200;
+}
+#textTopText{
+	color: white;
+	transition: all .3s ease-in-out;
+}
+#textTopText:hover{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+}
+#textTopRight{
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	font-size: 15px;
+}
+.changeLogin{
+	text-decoration: none;
+	color: white;
+	padding: 7px 14px;
+	border-color: darkorange;
+	background-color: #FF7200;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+}
+.changeLoginActivate{
+	text-decoration: none;
+	color: #FF7200;
+	padding: 7px 20px;
+	border-color: darkorange;
+	background-color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+}
+.changeLoginActivate:hover{
+	text-decoration: none;
+	color: #FF7200;
+	background-color: white;
+	transition: all .2s ease-in-out;
+}
+.changeLogin:hover{
+	text-decoration: none;
+	color: #FF7200;
+	background-color: white;
+	transition: all .2s ease-in-out;
+}
+
+/*Middle*/
+#errorMessage{
+	color: red;
+	font-weight: bold;
+}
+#loginMiddle{
+	text-align: center;
+	margin-top: 50px;
+}
+#loginLogo{
+	width: 350px;
+}
+.inputForm{
+	background: rgba(96,96,96,0.9);
+	padding: 15px 60px;
+	margin: 5px 0px;
+	border-radius: 40px;
+	border: none;
+	color: white;
+}
+.inputForm:focus{
+	color: white;
+	outline-color: #FF7200;
+	outline: none;
+}
+.inner-addon {
+  position: relative;
+}
+.inner-addon .glyphicon {
+  position: absolute;
+  pointer-events: none;
+  padding: 21px 0px 0px 25px;
+  color: white;
+}
+
+#loginLogin{
+	background-color: #FF7200;
+	padding: 15px 125px;
+	margin: 10px 0px 10px 0px;
+	border-radius: 40px;
+	color: white;
+    transition: all .2s ease-in-out;
+	border: none;
+	outline: none;
+}
+#loginLogin:hover{
+	background-color: #FF4500;
+	color: white;
+}
+
+::-webkit-input-placeholder{
+   color: #C0C0C0;
+   text-align: left;
+}
+
+/*Bottom*/
+#textBottomFirst{
+	color: #808080;
+}
+#textBottomSecond{
+	color: white;
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+	cursor: pointer;
+}
+#textBottomSecond:hover{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+
+/*Modal*/
+#modalTop{
+	text-align: center;
+}
+#modalTopClose:hover{
+	color: #FF7200;
+}
+#modalTopText1{
+	font-size: 20px;
+}
+#modalTopText2{
+	margin-bottom: 0px;
+}
+
+#registerErrorMessage, #usernameErrorMessage{
+	color: red;
+	display: none;
+}
+#modalBotButton{
+	width: 100%;
+	transition: all .3s ease-in-out;
+}
+#modalBotButton:hover{
+	color: white;
+	background-color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+#modalBotButton:focus{
+	outline: none;
+}

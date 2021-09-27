@@ -1,0 +1,95 @@
+#bottomTop{
+	background-color: #202020;
+	font-size: 13px;
+}
+#contactList{
+	margin: 40px 0px 40px 0px;
+}
+#contactList li{
+	list-style-type: none;
+	color: #808080;
+	padding: 0px 15px;
+}
+#contactList li strong{
+	color: white;
+}
+#bottomEmail{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+}
+#bottomEmail:hover{
+	color: white;
+	transition: all .3s ease-in-out;
+}
+
+
+.glyphicon-menu-right{
+	color: #FF7200;
+}
+#siteList, #policiesList{
+	margin: 40px 0px 40px 0px;
+}
+#siteList li, #policiesList li{
+	list-style-type: none;
+	color: #808080;
+	padding: 0px 15px;
+}
+#siteList li strong, #policiesList li strong{
+	color: white;
+}
+#siteList li a, #policiesList li a{
+	color: #808080;
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+}
+#siteList li a:hover, #policiesList li a:hover{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+#contactList, #siteList, #policiesList, #sponsorsList{
+	padding: 0px;
+}
+#sponsorsList{
+	margin: 40px 0px 40px 0px;
+}
+#sponsorsList li{
+	list-style-type: none;
+}
+#sponsorsList li strong{
+	color: white;
+}
+#sponsors{
+	width: 100%;
+}
+
+
+#bottomBot{
+	background-color: #101010;
+	font-size: 13px;
+	text-align: center;
+}
+#socialList{
+	padding: 0px;
+}
+#socialList li{
+	display: inline-block;
+	margin: 20px 0px 10px 0px;
+	padding: 0px 15px;
+}
+#socialList li strong{
+	color: white;
+}
+#socialList li a{
+	transition: all .3s ease-in-out;
+	color: #808080;
+}
+#socialList li a:hover{
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+	color: #FF7200;
+}
+#copyright{
+	margin: 20px 0px 10px 0px;
+	color: #808080;
+}

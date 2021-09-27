@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="{{ url_for("static", filename="images/Board.png") }}">
+		<link href="{{ url_for("static", filename="css/login.css") }}" rel="stylesheet">
+	</head>
+	<body>
+        {% from "includes/_formhelper.html" import render_field %}
+
+		<div id="textTopLeft">
+			<span class="glyphicon glyphicon-triangle-left"></span>
+			<a href="/" id="textTopText">&nbsp;Back to iDiet</a>
+		</div>
+        <div id="textTopRight">
+            <a class="changeLoginActivate" onclick="UserAdminLogin(this)" id="userButton">Login as User</a>
+            <a class="changeLogin" onclick="UserAdminLogin(this)" id="adminButton">Login as Admin</a>
+        </div>
+		<div id="loginMiddle">
+			<a href="/">
+				<img id="loginLogo" src="{{ url_for("static", filename="images/Logo Reverse.png") }}">
+			</a>
+
+
+			<form method="POST" action="">
+                <span id="errorMessage">{{ error }}</span>
+                </br>
+				<div class="inner-addon left-addon">
+					<i class="glyphicon glyphicon-user"></i>
+					{{ render_field(form.username, class="inputForm", id="usernameInput", placeholder="Username", required="required") }}
+				</div>
+				<br/>
+				<div class="inner-addon left-addon">
+					<i class="glyphicon glyphicon-lock"></i>
+					{{ render_field(form.password, class="inputForm", id="passwordInput", placeholder="Password", required="required")}}
+				</div>
+				<br/>
+				{{ render_field(form.login, class="btn btn-default", id="loginLogin", value="Sign In") }}
+			</form>
+
+
+			<span>
+				<span id="textBottomFirst">Not a member?&nbsp;</span>
+				<a id="textBottomSecond" data-toggle="modal" data-target="#registerModal">Sign up now&nbsp;<span class="glyphicon glyphicon-triangle-right"></span></a>
+			</span>
+		</div>
+		
+		<!--Modal-->
+		<div class="modal fade" id="registerModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" id="modalTopClose" class="close" data-dismiss="modal">&times;</button>
+						<div id="modalTop">
+							<p id="modalTopText1">Sign Up (User)</p>
+							<p id="modalTopText2">Welcome to iDiet</p>
+						</div>
+					</div>
+					<div class="modal-body">
+						<form method="POST" action="" onsubmit="return CHECK2()">
+                            <span id="usernameErrorMessage"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Username already exist!</span>
+                            <span id="registerErrorMessage"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Make sure both password are the same!</span>
+                            {{ render_field(regform.username, class="form-control", placeholder="Username", required="required", onchange="runCheck(this)") }}
+							<div class="row">
+								<div class="col-md-6">
+									{{ render_field(regform.firstname, class="form-control", placeholder="First Name", required="required") }}
+								</div>
+								<div class="col-md-6">
+									{{ render_field(regform.lastname, class="form-control", placeholder="Last Name") }}
+								</div>
+							</div>
+                            {{ render_field(regform.password, class="form-control", placeholder="Password", required="required", id="passwordNo1", onkeyup="CHECK()") }}
+                            {{ render_field(regform.conpassword, class="form-control", placeholder="Confirm Password", required="required", id="passwordNo2", onkeyup="CHECK()") }}
+							{{ render_field(regform.register, class="btn", id="modalBotButton", value="Get Started") }}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <script src="/static/js/login.js"></script>
+        <script>
+            if("{{ error }}" == "Please check your Username and Admin Password given."){//If error is for Admin, button click Admin Login
+                $("#adminButton").click();
+            }
+
+            function runCheck(deInput){
+                var users = {{ checkuser|safe }};
+                for(var userId in users){
+                    var userDetail = users[userId];
+                    if (userDetail["username"] == deInput.value){
+                        $("#usernameErrorMessage").css("display", "block");
+                        return
+                    }
+                }
+                $("#usernameErrorMessage").css("display", "none");
+            }
+        </script>
+
+	</body>
+</html>

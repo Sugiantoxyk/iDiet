@@ -1,0 +1,36 @@
+#healthLizard{
+    padding-left: 7%;
+    padding-right: 7%;
+    color: black;
+    background-color: white;
+
+}
+h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+}
+#healthBug{
+    height: 50%;
+    width: 50%;
+}
+#healthHippo{
+    background-color: #FF7200;
+	border-radius: 20px;
+	border: 1px solid black;
+	color: white;
+	float: right;
+	margin-right: 25px;
+    margin-top: -40px;
+}
+#healthHippo:hover{
+	background-color: #FFFFFF;
+	color: black;
+	transition: all .2s ease-in-out;
+}
+#healthHippo:focus{
+	outline: none;
+}
+#healthMonkey{
+    padding-top: 100px;
+}

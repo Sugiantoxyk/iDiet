@@ -1,0 +1,121 @@
+#header{
+	position: fixed;
+	top: 0;
+	z-index: 9999;
+	width: 100%;
+	transition: 0.5s;
+	background-color: rgba(0,0,0,0.4);
+	border-bottom: 1px solid rgba(0,0,0,0.5);
+	border-radius: 0;
+}
+.affix{
+	transition: 0.5s;
+    background-color: rgba(0,0,0,0.8) !important;
+	border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+}
+.affix #topRight #loginButton{
+	color: white;
+	border-color: white;
+}
+
+
+#logo{
+	width: 150px;
+	padding-left: 20px;
+	margin: 20px 0 15px 0;
+}
+#collapse{
+	margin: 25px 10px 15px 0;
+}
+@media (min-width: 0px) and (max-width: 910px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display: block !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+}
+
+
+#topRight{
+	text-align: center;
+}
+#navList{
+	text-align: center;
+}
+#navList li{
+	display: inline-block;
+	margin: 0 15px;
+}
+#navList li:hover{
+	transition: all .2s ease-in-out;
+	border-bottom: 2px solid #FF7200;
+}
+#navList li a{
+	color: white;
+	text-decoration: none;
+	font-size: 120%;
+	padding: 30px 10px 25px 10px;
+}
+.active1{
+	border-bottom: 2px solid #FF7200;
+}
+#loginButton{
+	background: 0 0;
+	padding: 10px 50px;
+	margin: 20px 20px 15px 20px;
+	border-radius: 40px;
+	color: white;
+    transition: all .2s ease-in-out;
+}
+#loginButton:hover{
+	background-color: #FF7200;
+	color: white;
+	border-color: white;
+}
+
+
+#usernameBox{
+	position: relative;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 2px solid white;
+	margin: 20px 40px 15px 20px;
+	display: flex;
+	overflow: hidden;
+}
+#displayPic{
+	height: 100%;
+	width: 100%;
+}
+#profileDropdown{
+	background-color: rgba(0,0,0,0.6) !important;
+	border: 1px solid rgba(0,0,0,0.8);
+	user-select: none;
+}
+#dropdownUsernameLink{
+	color: white;
+	white-space: nowrap;
+	width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#dropdownUsernameLink span{
+	color: #FF7200;
+}
+.dropdownLink{
+	color: white !important;
+	transition: all .2s ease-in-out !important;
+}
+.dropdownLink:hover{
+	color: #FF7200 !important;
+	background-color: inherit !important;
+}

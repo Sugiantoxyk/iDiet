@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="/static/css/skeleton.css" rel="stylesheet">
+		<link href="/static/css/community.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+	</head>
+	<body>
+	
+		{% include 'includes/_community_navbar.html' %}
+		<div><!--BODY-->
+            {% if admin != null %}
+                <div class="container noLink">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <h1 class="title">Community</h1>
+                    <br/><br/><br/>
+                    <h1 class="orange">Forums</h1>
+                    <a href="/community/announcements">
+                        <div class="col-md-8 tabs">
+                            <p class="tabsp titlePad"> Post Announcements </p>
+                        </div>
+                    </a>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+            {% else %}
+                <div class="container noLink">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <h1 class="title">Community</h1>
+                    <br/><br/><br/>
+                    <h1 class="orange">Forums</h1>
+                    <a href="/community/announcements">
+                        <div class="col-md-8 tabs">
+                            <p class="tabsp titlePad"> Announcements </p>
+                        </div>
+                    </a>
+                    <br/><br/><br/><br/>
+                    <a href="/community/general">
+                    <div class="col-md-8 tabs">
+                        <p class="tabsp titlePad"> General Discussion </p>
+                    </div>
+                    </a>
+                    <br/><br/><br/><br/>
+                    <a href="/community/recipes">
+                    <div class="col-md-8 tabs">
+                        <p class="tabsp titlePad"> Recipes </p>
+                    </div>
+                    </a>
+                    <br/><br/><br/><br/>
+                    <h1 class="orange">Support</h1>
+                    <a href="/community/contactus">
+                    <div class="col-md-8 tabs">
+                        <p class="tabsp titlePad"> Contact Us </p>
+                    </div>
+                    </a>
+                    <br/><br/><br/><br/>
+                    <a href="/community/faq">
+                    <div class="col-md-8 tabs">
+                        <p class="tabsp titlePad"> FAQ </p>
+                    </div>
+                    </a>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+            {% endif %}
+		</div>
+		
+		<!--BOTTOM-->
+        {% include 'includes/_footer.html' %}
+
+	</body>
+</html>

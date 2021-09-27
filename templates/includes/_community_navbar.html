@@ -1,0 +1,47 @@
+<nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+    <div class="navbar-header" id="topLeft">
+        <a href="/">
+            <img id="logo" src="/static/images/Logo Reverse.png">
+        </a>
+        <button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+
+    <div class="collapse navbar-collapse navbar-right" id="topRight">
+        <ul class="nav navbar-nav" id="navList">
+            <li><a href="/">Home</a></li>
+            <li><a href="/recipe">Recipe</a></li>
+            <li><a href="/health">My Health</a></li>
+            <li><a href="/fun">Fun</a></li>
+            <li class="active1"><a href="/community">Community</a></li>
+        </ul>
+
+        {% if user != null %}
+            <div id="usernameBox" style="background-color: {{ user['displaypicturecolor'] }}" class="dropdown-toggle" data-toggle="dropdown">
+                <img id="displayPic" src={{ user["displaypicture"] }}>
+            </div>
+            <ul id="profileDropdown" class="dropdown-menu">
+                <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                <li class="divider"></li>
+                <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+            </ul>
+        {% elif admin != null %}
+            <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #FF7200">
+                <img id="displayPic" src="/static/images/admin.png">
+            </div>
+            <ul id="profileDropdown" class="dropdown-menu">
+                <li class="disabled"><a id="dropdownUsernameLink">Hi Admin, <span>{{ admin["username"] }}</span></a></li>
+                <li class="divider"></li>
+                <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+            </ul>
+        {% else %}
+            <a type="button" class="btn btn-default" id="loginButton" href="/login">Sign In</a>
+        {% endif %}
+
+    </div>
+</nav>

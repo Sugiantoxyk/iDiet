@@ -1,0 +1,67 @@
+body{
+	background: url(../images/background5.jpg) no-repeat center center fixed
+}
+
+/*Breadcrumb*/
+.Breadcrumb{
+	font-size: 12px;
+	margin-top: 30px;
+}
+.BreadcrumbHome{
+	color: #808080;
+	transition: all .3s ease-in-out;
+}
+.BreadcrumbHome:hover{
+	color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+.BreadcrumbHere{
+	font-weight: bold;
+}
+
+.tabs{
+	background:rgba(0,0,0,0.5);
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transition: all .1s ease-in-out;
+	font-family: Calibri Light;
+}
+.tabs:hover{
+	background:rgba(0,0,0,0.3);
+    transition: all .1s ease-in-out;
+	color: white;
+	cursor: pointer;
+}
+
+.noLink >  a{
+	text-decoration: none;
+	color:#E8E8E8;
+}
+
+.tabsp{
+	opacity: 1;
+	font-size: 24px;
+}
+
+.title{
+	color: #ffffff;
+	font-size: 64px;
+	font-style: italic;
+    font-family: Verdana;
+}
+
+.subject{
+	color: #ffffff;
+	font-size: 48px;
+	font-weight: bold;
+}
+/* colors */
+.orange{
+    color: #FF7200;
+}
+.black{
+	color: #000000;
+}
+.titlePad {
+    padding: 10px 0 7px 14px;
+}
+

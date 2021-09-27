@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="{{ url_for("static", filename="images/Board.png") }}">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+		<link href="{{ url_for("static", filename="css/skeleton.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/profile.css") }}" rel="stylesheet">
+	</head>
+	<body>
+        {% from "includes/_formhelper.html" import render_field %}
+
+        <nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+            <div class="navbar-header" id="topLeft">
+                <a href="/">
+                    <img id="logo" src="{{ url_for("static", filename="images/Logo Reverse.png") }}">
+                </a>
+
+                <button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right" id="topRight">
+                <ul class="nav navbar-nav" id="navList">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/recipe">Recipe</a></li>
+                    <li><a href="/health">My Health</a></li>
+                    <li><a href="/fun">Fun</a></li>
+                    <li><a href="/community">Community</a></li>
+                </ul>
+
+                <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: {{ user["displaypicturecolor"] }}">
+                    <img id="displayPic" src={{ user["displaypicture"] }}>
+                </div>
+                <ul id="profileDropdown" class="dropdown-menu">
+                    <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                    <li class="divider"></li>
+                    <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                    <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <div class="container-fluid borderBot" id="profileBody"><!--BODY-->
+            <div class="container">
+                <h3 id="profileTitle" class="changeFont">Manage Account</h3>
+            </div>
+        </div>
+        <div class="container-fluid borderBot" id="profileBody2">
+
+            <!--Achievement-->
+            <div class="container borderBot">
+                <div class="col-md-4 addPadding">
+                    <h4 class="addOrange">Achievements</h4>
+                    <p class="subscriptText">Achievement collection unlocked from Fun page.</p>
+                </div>
+                <div class="col-md-7 col-md-offset-1 addPadding">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2">
+                            <img class="profileAchivements" id="Achieve4" src="/static/images/Achievement4.png" data-toggle="tooltip" title="FACTORIOUS FOOLERY">
+                        </div>
+                        <div class="col-xs-4 col-sm-2">
+                            <img class="profileAchivements" id="Achieve1" src="/static/images/Achievement1.png" data-toggle="tooltip" title="POWDER POWER">
+                        </div>
+                        <div class="col-xs-4 col-sm-2">
+                            <img class="profileAchivements" id="Achieve2" src="/static/images/Achievement2.png" data-toggle="tooltip" title="DESERVING DINER">
+                        </div>
+                        <div class="col-xs-4 col-sm-2">
+                            <img class="profileAchivements" id="Achieve3" src="/static/images/Achievement3.png" data-toggle="tooltip" title="BEAK BECKONING">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Profile Box-->
+            <div class="container borderBot">
+                <div class="col-md-4 addPadding">
+                    <h4 class="addOrange">Profile</h4>
+                    <p class="subscriptText">Your first name and last name is your identity on iDiet.</p>
+                </div>
+                <div class="col-md-7 col-md-offset-1 addPadding">
+
+                    <div id="profilePicBox">
+                        <img id="profilePic" src={{ user["displaypicture"] }}>
+                    </div>
+                    <a type="button" class="editButtonDP" id="editDP">Edit</a>
+
+                    <p class="spaceAbove changeFont">First Name</p>
+                    {{ render_field(proform.firstname, class="profileInput", required="required", id="profile1", onfocusin="focusIn(1)", onkeyup="checkInput(1)") }}
+                    <a type="button" class="editButton" id="Edit1" onclick="focusIn(1)">Edit</a>
+                    <a type="button" class="saveButton" id="Save1" onmousedown="updateProfile(1)">Save</a>
+                    <a type="button" class="cancelButton" id="Cancel1" onclick="focusOut(1)">Cancel</a>
+                    <div class="loader" id="loader1"></div>
+
+                    <p class="spaceAbove changeFont">Last Name</p>
+                    {{ render_field(proform.lastname, class="profileInput", required="required", id="profile2", onfocusin="focusIn(2)", onkeyup="checkInput(2)") }}
+                    <a type="button" class="editButton" id="Edit2" onclick="focusIn(2)">Edit</a>
+                    <a type="button" class="saveButton" id="Save2" onmousedown="updateProfile(2)">Save</a>
+                    <a type="button" class="cancelButton" id="Cancel2" onclick="focusOut(2)">Cancel</a>
+                    <div class="loader" id="loader2"></div>
+
+                    <p class="spaceAbove changeFont">Username</p>
+                    {{ render_field(proform.username, class="profileInput", required="required", id="profile3", onfocusin="focusIn(3)", onkeyup="checkInput(3)") }}
+                    <a type="button" class="editButton" id="Edit3" onclick="focusIn(3)">Edit</a>
+                    <a type="button" class="saveButton" id="Save3" data-toggle="modal" data-target="#DeModal">Save</a>
+                    <a type="button" class="cancelButton" id="Cancel3" onclick="focusOut(3)">Cancel</a>
+                    <div class="loader" id="loader3"></div>
+
+                </div>
+            </div>
+
+            <!--Password Box-->
+            <div class="container borderBot">
+                <div class="col-md-4 addPadding">
+                    <h4 class="addOrange">Password</h4>
+                    <p class="subscriptText">Please make sure you enter the correct Current Password.</p>
+                </div>
+                <div class="col-md-7 col-md-offset-1 addPadding">
+                    <form method="POST" action="" onsubmit="return PasswordChangeCheck()">
+                        <p class="changeFont">Current Password</p>
+                        {{ render_field(proform.currpassword, id="currPass", class="profilePasswordInput", required="required", placeholder="enter your current password", onkeyup="activateButton()") }}
+
+                        <hr/>
+
+                        <span id="errorMessage"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;</span>
+
+                        <p class="spaceAbove changeFont">New Password</p>
+                        {{ render_field(proform.newpassword, id="newPass", class="profilePasswordInput", required="required", placeholder="enter a new password", onkeyup="activateButton()") }}
+
+                        <p class="spaceAbove changeFont">Confirm New Password</p>
+                        {{ render_field(proform.connewpassword, id="conNewPass", class="profilePasswordInput", required="required", placeholder="enter new password again", onkeyup="activateButton()") }}
+
+                        <br/>
+                        {{ render_field(proform.changepassword, id="profileChangePasswordButton", value="Update Password", disabled="true", class="buttonDisabled") }}
+                    </form>
+                </div>
+            </div>
+
+            <!--Account Box-->
+            <div class="container">
+                <div class="col-md-4 addPadding">
+                    <h4 class="addRed">Close Account</h4>
+                    <p class="subscriptText"><b>Warning:</b> Closing your account is irreversible.</p>
+                </div>
+                <div class="col-md-7 col-md-offset-1 addPadding">
+
+                    <a id="closeAccModalButton" data-toggle="modal" data-target="#DeModal">Close this account...</a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--Choose DP Overlay-->
+        <div id="DPOverlay">
+            <button id="DPOverlayX">&times;</button>
+            <div class="container smallerContainer">
+                <h3>Pick an avatar from our gallery</h3>
+                <hr id="hr1"/>
+                <div id="overlayPicBox">
+                    <img id="overlayPic" src={{ user["displaypicture"] }}>
+                </div>
+                <span id="backgroundColorText">Background color:<input type="color" id="inputChangeColor" onchange="CHANGECOLOR()"></span>
+                <hr id="hr1"/>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic2.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic3.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic4.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic5.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic6.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic7.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="overlayPicOptionBox">
+                            <img class="overlayPicOption" src="/static/images/display_pic8.png">
+                        </div>
+                    </div>
+                </div>
+                <hr id="hr2"/>
+                <a type="button" class="overlayButton" id="overlayButtonSaveNO" onclick="updateDP()">Save</a>
+                <a type="button" class="overlayButton" id="overlayButtonCancel">Cancel</a>
+            </div>
+        </div>
+
+        <!--De Modal-->
+        <div class="modal fade" id="DeModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" id="modalTopClose" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="modalTop"><span id="modalTopText">javascript</span> ({{ user["username"] }})</h4>
+                    </div>
+                    <form method="POST" action="" onsubmit="return CheckPassword()">
+                        <div class="modal-body">
+                            <span id="modalMiddleText">javascript</span>
+                            {{ render_field(proform.modalinputpassword, class="form-control", id="modalInput", placeholder="current password") }}
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn" id="closeModal" onclick="closeModal()">Cancel</a>
+                            {{ render_field(proform.closeacc, class="btn", id="modalButton", value="javascript") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/js/profile.js"></script>
+        <script>
+            var user = {{ user|safe }};
+
+            $(document).ready( function(){
+                setAchievement({{ achieve1 }}, {{ achieve2 }}, {{ achieve3 }}, {{ achieve4|safe }}, {{ achieve4Max|safe }});
+                colorForDP(user["displaypicturecolor"]);
+            });
+
+            <!--Check DP and color-->
+            function checkDPColor(){
+                if($("#overlayPic").attr("src") == user["displaypicture"] && $("#inputChangeColor").val() == user["displaypicturecolor"]){
+                    $("#overlayButtonSave").attr("id", "overlayButtonSaveNO");
+                }else{
+                    $("#overlayButtonSaveNO").attr("id", "overlayButtonSave");
+                }
+            }
+
+            <!--Get User image from firebase when user changing image && reset overlay-->
+            $("#editDP").click(function(){
+                $("#overlayButtonSave").attr("id", "overlayButtonSaveNO");
+                $("#inputChangeColor").val(user["displaypicturecolor"]);
+                $("#overlayPicBox").css("background-color", user["displaypicturecolor"]);
+                $(".overlayPicOptionBox").css("background-color", user["displaypicturecolor"]);
+
+                $("#DPOverlay").css("display", "block");
+                $("#overlayPic").attr("src", user["displaypicture"]);
+                $(".overlayPicOption").parent().css("border-color", "white");
+                $(".overlayPicOption[src='"+user["displaypicture"]+"']").parent().css("border-color", "#404040");
+                imgPath = user["displaypicture"];
+            });
+            $(".overlayPicOption").click(function(){
+                $(".overlayPicOption[src='"+imgPath+"']").parent().css("border-color", "white");
+                imgPath = this.getAttribute("src");
+                $(".overlayPicOption[src='"+imgPath+"']").parent().css("border-color", "#404040");
+                $("#overlayPic").attr("src", imgPath);
+                checkDPColor();
+            });
+
+            <!--Send data to flask to update firebase-->
+            function updateProfile(num){
+                $("#loader"+num).css("display", "inline-block");
+                if(num == 3){
+                    if($("#modalInput").val() != user["password"]){
+                        $("#loader"+num).css("display", "none");
+                        return false;
+                    }
+                    changeValue = $("#NewUsername").text()
+                }else{
+                    changeValue = $("#profile"+num).val()
+                }
+                nameName = $("#profile"+num).attr("name");
+                $.getJSON("/updatingData", {value: changeValue, key: nameName}, function(newData){
+                    user = newData;
+                    $("input[name="+nameName+"]").val(changeValue);
+                    $("#loader"+num).css("display", "none");
+                    $("#dropdownUsernameLink").html("Hi, <span>"+user['firstname']+"</span>");
+                })}
+
+            <!--Display "Edit" button-->
+            function focusOut(num){
+                $("#Edit"+num).css("display", "inline");
+                $("#Save"+num).css("display", "none");
+                $("#Save"+num).attr("class", "saveButton");
+                $("#Cancel"+num).css("display", "none");
+                $("#profile"+num).val(user[$("#profile"+num).attr("name")]);
+            }
+
+            <!--Check input to activate "Save" button-->
+            function checkInput(num){
+                var findName = $("#profile"+num).attr("name");
+                if($("#profile"+num).val() == user[findName] || $("#profile"+num).val() == ""){
+                    $("#Save"+num).attr("class", "saveButton");
+                }else{
+                    $("#Save"+num).attr("class", "saveButtonAct");
+                }
+            }
+
+            <!--Check 3 input that are use to change password before submitting the form-->
+            function PasswordChangeCheck(){
+                if($("#currPass").val() == user["password"]){
+                    if($("#newPass").val() == $("#conNewPass").val()){
+                        if($("#newPass").val() != $("#currPass").val()){
+                            alert("Account password updated.")
+                            return true;
+                        }
+                    }
+                }else{
+                    alert("Account not updated, current password is incorrect.");
+                }
+                return false;
+            }
+
+            <!--Check input inside the modal before submitting-->
+            function CheckPassword() {
+                var password = user["password"];
+                if($("#modalInput").val() != password){
+                    alert("Wrong Password");
+                    $("#DeModal").modal("toggle");
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        </script>
+
+		{% include 'includes/_footer.html' %}
+
+	</body>
+</html>

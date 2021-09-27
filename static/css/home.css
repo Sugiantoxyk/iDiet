@@ -1,0 +1,78 @@
+#homeDuck{
+	width: 190px;
+	height: 100px;
+}
+#homePig{
+	text-decoration: none;
+	color: white;
+}
+#homeCow{
+	background-color: rgba(32,32,32,0.9);
+}
+#homeElephant{
+	padding-top: 5%;
+	padding-bottom: 1%;
+}
+#homeTiger{
+	border: 5px solid black;
+}
+#homeRabbit{
+	text-align: center;
+}
+#homeRacoon{
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+#homeFox{
+	width: 60%;
+}
+#homeWhale{
+	color: white;
+	height: 200px;
+	text-align: center;
+}
+#homeHog{
+	background-color: #FF7200;
+	border-radius: 20px;
+	border: 1px solid black;
+	color: white;
+	float: right;
+	margin-right: 15px;
+}
+#homeHog:hover{
+	background-color: #FFFFFF;
+	color: black;
+	transition: all .2s ease-in-out;
+}
+#homeHog:focus{
+	outline: none;
+}
+#homeBat{
+	text-decoration: none;
+}
+#homeZebra{
+    width: 100%;
+	padding: 0 0 0 0;
+}
+#homeOtter{
+    background-color: rgba(32,32,32,0.9);
+	color: white;
+    height: 100px;
+    width: 300px;
+	position: relative;
+}
+#homeChicken{
+	float: right;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	left: 200px;
+	bottom: 0px;
+}
+#homeGorilla{
+	background-color: white;
+	width: 60%;
+    height: 50%;
+	margin: auto;
+}

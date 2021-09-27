@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="/static/css/skeleton.css" rel="stylesheet">
+		<link href="/static/css/community.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+	</head>
+	<body>
+
+        {% include 'includes/_community_navbar.html' %}
+
+        <div><!--BODY-->
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <p style="font-size: 80px; color: white; text-align: center"> FAQ </p>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+        <div style="background-color: white;">
+            <div class="container text-justify">
+                <br/><br/>
+                <div class="Breadcrumb">
+                    <a href="/community" class="BreadcrumbHome">Community</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span class="BreadcrumbHere">FAQ</span>
+                </div>
+                <br/><br/>
+                <h1>Frequently Asked Questions</h1>
+                <hr/>
+                <h3 class="orange">Accessing your account</h3>
+                <p> <b> Why has the login changed from username to email? </b></p>
+                    <p> Social sign in is here! Our new identity management system is
+                        currently being rolled out which will offer a lot of exciting
+                        features for the Best Recipes audience in the future. </p>
+
+                    <p>If you choose not to login via social media, you will need to use
+                        your email address and existing password. </p>
+
+                    <p> You will then need to enter your first and last name to complete
+                        your profile within the 'registration' process. If you don't do this,
+                        your form will error.</p>
+                <hr/>
+                <h3 class="orange">Saving recipes</h3>
+                <p> <b> How do I save a recipe? </b></p>
+                    <p> Every recipe on the site can be saved and organised into personal
+                        collections of folders in your own recipe book. To save just click
+                        the on the save button, located directly underneath the recipe
+                        description. You will be able to select an existing recipe book
+                        or save into the default My Favourites folder.  You can access all
+                        of your saved items by clicking on the Edit Profile button at the
+                        top right corner of the page, and selecting My Recipe Book tab.  </p>
+
+                <p> <b> How do I create a new folder in my Recipe Book?</b></p>
+                    <p> To create a new folder, access your My Recipe Book in your profile.
+                        Click on the New Folder button and give your new folder a name. At
+                        this stage you can't create a new folder from a recipe page. You
+                        can edit the folders name at any time by clicking on the edit button
+                        (looks like a pencil) and re-naming the folder.   </p>
+
+                <p> <b> How do I add one of my recipes? </b></p>
+                    <p> You can add your original recipes on our Submit a Recipe page.
+                        We've made some updates to our recipe submission form since we
+                        relaunched in September 2014. We've heard your feedback that
+                        it was a bit tricky or time-consuming to share a recipe so we've
+                        simplified the process removing some mandatory fields and allowing
+                        you to add ingredients and measurements as text. You can now take a
+                        photo on your mobile phone or add it straight from your phone's
+                        camera roll.    </p>
+                <hr/>
+                <h3 class="orange">Reviews</h3>
+                <p> <b> How do I make a comment or share a review of a recipe?</b></p>
+                    <p> Only members are able to review and comment on recipes. The
+                        comment/review section is at the bottom of each recipe. You
+                        can leave a comment with what you thought of the recipe, any
+                        changes you made or would make next time and a star rating
+                        (1-5). We ask that our home cooks be polite and factual when
+                        sharing their opinions of recipes. Our editorial team reserve
+                        the right to remove or edit comments that  breach our terms
+                        and conditions.   </p>
+
+                <p> <b> How do I make a comment or share a review of a recipe?</b></p>
+                    <p> If you'd like to make some changes to a recipe or a review
+                        that you have submitted, you can send an email to team at
+                        contactus@iDiet.com.sg Please include your username, the
+                        recipe name, the URL of the recipe and the details of changes
+                        you would like made.    </p>
+                <hr/>
+                <h3 class="orange">Site updates</h3>
+                <p> <b> Where has the menu planner gone to? </b></p>
+                    <p> The menu planner was not moved over to the new Best Recipes.
+                        We've found that our members aren't using the menu planner in
+                        its current format but may re-invent this feature in future.   </p>
+
+                <p> <b> I really miss a feature from the old site - are you going to bring it back? </b></p>
+                    <p> The Best Recipes community is so passionate about creating and sharing
+                        recipes. We're listening to your feedback and using this to help inform
+                        the building of new features and fixing bugs and issues with the site.
+                        If you have feedback please send the team an email at
+                        contactus@iDiet.com.sg.</p>
+                <hr/>
+                <form method="POST" action="">
+
+                </form>
+
+                <br/><br/><br/><br/><br/><br/>
+            </div>
+        </div>
+
+<!--BOTTOM-->
+{% include 'includes/_footer.html' %}
+</body>
+</html>

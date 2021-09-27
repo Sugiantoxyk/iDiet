@@ -1,0 +1,294 @@
+/*Table for Admin*/
+#admin1Text{
+	margin-top: 50px;
+	font-family: Verdana;
+}
+table{
+	margin: 30px 0;
+}
+table, th, td{
+	border: 1px solid black;
+    border-collapse: collapse;
+}
+th{
+	padding: 7px 9px;
+	font-size: 15px;
+	font-family: Verdana;
+	background-color: rgba(255, 114, 0, 0.8);
+	color: white;
+}
+td{
+	padding: 4px 5px;
+	background-color: #ebebeb;
+}
+.editButtons, .saveButtons{
+	text-decoration: none;
+	color: white;
+	background-color: orange;
+	border: 1px solid orange;
+	padding: 4px 14px;
+	border-radius: 4px;
+	margin: 0 4px;
+}
+.noSaveButton{
+	text-decoration: none;
+    color: white;
+    cursor: not-allowed;
+    padding: 4px 14px;
+	border-radius: 4px;
+	margin: 0 4px;
+    border: 1px solid #adadad;
+    background-color: #d7d7d7;
+}
+.noSaveButton:hover{
+	text-decoration: none;
+    color: white;
+}
+.deleteButtons, .cancelButtons{
+	text-decoration: none;
+	color: white;
+	background-color: orangered;
+	border: 1px solid orangered;
+	padding: 4px 14px;
+	border-radius: 4px;
+	margin: 0 4px;
+}
+.editButtons:hover, .saveButtons:hover{
+	text-decoration: none;
+	color: white;
+	background-color: rgba(255, 165, 0, 0.8);
+	border: 1px solid rgba(255, 165, 0, 0.8);
+	cursor: pointer;
+}
+.deleteButtons:hover, .cancelButtons:hover{
+	text-decoration: none;
+	color: white;
+	background-color: rgba(255, 69, 0, 0.8);
+	border: 1px solid rgba(255, 69, 0, 0.81);
+	cursor: pointer;
+}
+#addRowButton{
+	text-decoration: none;
+	color: white;
+	background-color: #FF7200;
+	border: 1px solid black;
+	padding: 7px 15px;
+	border-radius: 4px;
+	transition: all .2s ease-in-out;
+}
+#addRowButton:hover{
+	text-decoration: none;
+	color: white;
+	background-color: rgba(255, 114, 0, 0.81);
+	border: 1px solid rgba(0, 0, 0, 0.8);
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+}
+
+textarea{
+	resize:vertical;
+	max-height: 200px;
+    min-height: 100px;
+	width: 100%;
+}
+
+/*Image*/
+#funTop{
+	position: relative;
+}
+#funTopImage{
+	width: 100%;
+}
+#funTopTextBox{
+	position: absolute;
+	left: 80%;
+	top: 20%;
+}
+#funTopText{
+	color: #FF7200;
+	letter-spacing: -1px;
+	font-size: 5vw;
+}
+
+/*Main*/
+#mainBox{
+	background-color: #E0E0E0;
+}
+
+/*Main 1*/
+#fun1TopText{
+	position: relative;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 50px;
+	margin-bottom: 80px;
+}
+#fun1BotText{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 80px;
+	margin-bottom: 50px;
+}
+#fun1Achievement{
+	width: 70px;
+	position: absolute;
+	margin-left: 20px;
+}
+#mainFun1{
+	text-align: center;
+	background-color: #dedede;
+}
+.scene {
+	display: inline-block;
+	width: 250px;
+	height: 250px;
+	perspective: 600px;
+}
+.cube {
+	position: relative;
+	width: inherit;
+	height: inherit;
+	transform-style: preserve-3d;
+	transition: transform 0.6s;
+	color: white;
+}
+.cube-face {
+	width: inherit;
+	height: inherit;
+	position: absolute;
+	opacity: 0.8;
+}
+.cube-face-front {
+	background: red;
+	transform: translate3d(0, 0, 125px);
+}
+.cube-face-back {
+	background: black;
+	transform: rotateY(180deg) translate3d(0, 0, 125px);
+}
+.cube-face-left {
+	background: green;
+	transform: rotateY(-90deg) translate3d(0, 0, 125px);
+}
+.cube-face-right {
+	background: #c500c5;
+	transform: rotateY(90deg) translate3d(0, 0, 125px);
+}
+.cube-face-top {
+	background: #0000b4;
+	transform: rotateX(90deg) translate3d(0, 0, 125px);
+}
+.cube-face-bottom {
+	background: #ac6500;
+	transform: rotateX(-90deg) translate3d(0, 0, 125px);
+}
+
+/*Main 2*/
+#mainFun2{
+
+}
+
+/*Main 3*/
+#mainFun3{
+	text-align: center;
+	background-color: #A0A0A0;
+}
+.achievements{
+	width: 50px;
+	position: absolute;
+	left: 140px;
+	bottom: 5px;
+}
+#challengeButton, #challengeButton2, #challengeButton3{
+	background-color: #404040;
+	padding: 10px 50px;
+	margin: 60px 20px 15px 20px;
+	border-radius: 40px;
+	color: white;
+	border-color: white;
+    transition: all .2s ease-in-out;
+	position: relative;
+}
+#challengeButton:hover, #challengeButton2:hover, #challengeButton3:hover {
+	background-color: #FF8000;
+	color: white;
+	border-color: white;
+}
+#mainFun3Text{
+	font-weight: bold;
+	font-size: 20px;
+	padding-bottom: 60px;
+	margin-bottom: 0;
+}
+
+/*Modal*/
+#challengeModal{
+	padding-top: 100px;
+}
+#modalTop{
+	text-align: center;
+}
+#modalTopClose:hover{
+	color: #FF7200;
+}
+#modalTopText1{
+	font-size: 20px;
+}
+#achievements{
+	width: 50%;
+}
+
+#errorMessage{
+	color: red;
+	display: none;
+}
+#modalBodyText{
+	color: #FF7200;
+	font-size: 16px;
+}
+#modalBodyNext{
+	width: 100%;
+	transition: all .3s ease-in-out;
+}
+#modalBodyNext:hover{
+	color: white;
+	background-color: #FF7200;
+	transition: all .3s ease-in-out;
+}
+#modalBodyNext:focus{
+	outline: none;
+}
+
+#modalProgress{
+	width: 0;
+}
+
+/*Alert Achievement*/
+#containerCon{
+	position: fixed;
+	bottom: 30px;
+	width: 100%;
+}
+#UnlockAlertBox{
+	display: none;
+	background-color: #556666;
+	width: 250px;
+	height: 50px;
+	color: white;
+	border-radius: 25px;
+	margin: 0 auto;
+}
+#AlertAchievement{
+	width: 48px;
+	position: relative;
+	left: -12px;
+	padding-top: 1px;
+}
+#AlertUnlock{
+	font-weight: bold;
+	padding-top: 5px;
+	margin-bottom: 0;
+}
+#AlertText{
+	font-size: 13px;
+}

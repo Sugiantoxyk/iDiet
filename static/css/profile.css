@@ -1,0 +1,377 @@
+/*GENERAL*/
+.borderBot{
+    border-bottom: 1px solid #b7b7b7;
+}
+.addPadding{
+    padding: 3em 0 3em 0;
+}
+.addOrange{
+    color: #FF7200;
+}
+.addRed{
+    color: red;
+}
+.subscriptText{
+    font-size: 13px;
+}
+.spaceAbove{
+    margin-top: 2em;
+}
+.editButton{
+
+}
+.changeFont{
+    font-family: Verdana;
+}
+
+/*TOP*/
+#profileBody{
+    background-color: #D2D2D2;
+}
+#profileTitle{
+    margin-top: 4em;
+    padding: 1em 0 1em 0;
+}
+
+/*FIRST BOX*/
+.profileAchivements{
+    width: 80%;
+}
+
+/*DP*/
+#DPOverlay{
+    position: fixed;
+    z-index: 99999;
+    opacity: 1;
+    background-color: rgba(255,255,255,0.9);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all .2s ease-in-out;
+    display: none;
+}
+#DPOverlayX{
+    float: right;
+    font-size: 100px;
+    overflow: hidden;
+    font-family: Helve;
+    background: none;
+    border: none;
+    outline: none;
+    transition: all .2s ease-in-out;
+}
+#DPOverlayX:hover{
+    color: #FF7200;
+}
+.smallerContainer{
+    padding: 20px 20% 0 20%;
+}
+#overlayPicBox{
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 2px solid #404040;
+	overflow: hidden;
+    display: inline-block;
+}
+#overlayPic{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#backgroundColorText{
+    font-size: 15px;
+}
+#inputChangeColor{
+    padding: 0;
+    margin-left: 30px;
+    background-color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    outline: none;
+}
+#hr1{
+    border-color: #a7a5a5;
+    width: 10%;
+    margin-left: 0;
+    border-width: 3px;
+    opacity: 0.5;
+}
+#hr2{
+    border-color: #a7a5a5;
+    border-width: 2px;
+    opacity: 0.5;
+}
+.overlayButton{
+    padding: 7px 28px;
+    border-radius: 18px;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+#overlayButtonSaveNO{
+    text-decoration: none;
+    color: white;
+    cursor: not-allowed;
+    padding: 7px 28px;
+    border-radius: 18px;
+    border: 1px solid #adadad;
+    background-color: #d7d7d7;
+    transition: all .2s ease-in-out;
+}
+#overlayButtonSave{
+    border: 1px solid #FF7200;
+    background-color: #FF7200;
+    color: white;
+}
+#overlayButtonSave:hover{
+    text-decoration: none;
+    opacity: 0.8;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+#overlayButtonCancel{
+    border: 1px solid #FF7200;
+    color: #FF7200;
+}
+#overlayButtonCancel:hover{
+    text-decoration: none;
+    background-color: #FF7200;
+    color: white;
+    opacity: 0.8;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+.overlayPicOptionBox{
+    position: relative;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 2px solid white;
+	overflow: hidden;
+    display: inline-block;
+}
+.overlayPicOptionBox:hover{
+    cursor: pointer;
+    border-color: #404040 !important;
+    transition: all .1s ease-in-out;
+}
+.overlayPicOption{
+    position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+/*SECOND BOX*/
+#profileBody2{
+    background-color: white;
+}
+#profilePicBox{
+	position: relative;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 2px solid #404040;
+	overflow: hidden;
+    display: inline-block;
+}
+#profilePic{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.profileInput{
+    border: none;
+    border-bottom: 1px solid #aaaaaa;
+    width: 60%;
+}
+.profileInput:focus{
+    outline: none;
+    border-bottom: 1px solid #FF7200;
+}
+.editButtonDP{
+    text-decoration: none;
+    color: #FF7200;
+    cursor: pointer;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+.editButtonDP:hover{
+    text-decoration: none;
+    color: #FF7200;
+    background-color: #fafafa;
+    border: 1px solid #FF7200;
+}
+.editButton, .cancelButton{
+    text-decoration: none;
+    color: #FF7200;
+    cursor: pointer;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+.editButton:hover, .cancelButton:hover{
+    text-decoration: none;
+    color: #FF7200;
+    background-color: #fafafa;
+    border: 1px solid #FF7200;
+}
+.saveButton{
+    text-decoration: none;
+    color: white;
+    cursor: not-allowed;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid #adadad;
+    background-color: #d7d7d7;
+    transition: all .2s ease-in-out;
+}
+.saveButton:hover{
+    text-decoration: none;
+    color: white;
+}
+.saveButtonAct{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid #FF7200;
+    background-color: darkorange;
+    transition: all .2s ease-in-out;
+}
+.saveButtonAct:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #FF7200;
+    transition: all .2s ease-in-out;
+}
+.saveButton, .cancelButton{
+    display: none;
+}
+.profileInput{
+    margin-bottom: 5px;
+}
+.loader{
+    border: 10px solid #F3F3F3;
+    border-radius: 50%;
+    border-top: 10px solid #FF7200;
+    border-bottom: 10px solid #FF7200;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*THIRD BOX*/
+.profilePasswordInput{
+    width: 70%;
+    padding: 2px 7px 2px 7px;
+}
+.profilePasswordInput:focus{
+    outline-color: #FF7200;
+}
+.buttonDisabled{
+    margin-top: 20px;
+    padding: 4px 14px 4px 14px;
+    border: 1px solid #adadad;
+    background-color: #d7d7d7;
+    cursor: not-allowed !important;
+    color: white;
+    border-radius: 3px;
+}
+.buttonAbled{
+    margin-top: 20px;
+    padding: 4px 14px 4px 14px;
+    border: 1px solid #FF7200;
+    background-color: white;
+    color: #FF7200;
+    cursor: pointer !important;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+}
+.buttonAbled:hover{
+    background-color: #FF7200;
+    color: white;
+    transition: all .2s ease-in-out;
+}
+.buttonAbled:focus{
+    outline: none;
+}
+#errorMessage{
+    color: red;
+    display: none;
+    background-color: #ffe8f1;
+    border: 1px solid red;
+    border-radius: 4px;
+    width: 80%;
+    padding: 5px 10px 5px 10px;
+}
+
+/*FOURTH BOX*/
+#closeAccModalButton{
+    text-decoration: none;
+    color: red;
+    cursor: pointer;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid red;
+    background-color: white;
+    transition: all .2s ease-in-out;
+}
+#closeAccModalButton:hover{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px 14px 4px 14px;
+    border-radius: 3px;
+    border: 1px solid orangered;
+    background-color: red;
+    transition: all .2s ease-in-out;
+}
+
+/*Modal*/
+#DeModal{
+    top: 7em;
+}
+#modalTopClose:hover{
+	color: #FF7200;
+}
+#modalTop{
+    text-align: center;
+    color: #FF7200;
+}
+#modalInput{
+    margin: 10px 0 5px 0;
+}
+#closeModal{
+    text-decoration: none;
+    cursor: pointer;
+    color: #FF7200;
+    border: 1px solid #FF7200;
+    background-color: white;
+    border-radius: 3px;
+    padding: 4px 14px 4px 14px;
+    transition: all .2s ease-in-out;
+}
+#closeModal:hover{
+    background-color: #fafafa;
+    transition: all .2s ease-in-out;
+}
+#modalButton{
+    color: #FF7200;
+    border: 1px solid #FF7200;
+    background-color: white;
+    border-radius: 3px;
+    padding: 4px 14px 4px 14px;
+    transition: all .2s ease-in-out;
+}
+#modalButton:hover{
+    color: white;
+    background-color: #FF7200;
+    transition: all .2s ease-in-out;
+}

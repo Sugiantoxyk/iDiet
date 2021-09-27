@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/health.css') }}">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+        <script type="text/javascript" src="static/js/graph.js"></script>
+        <script type="text/javascirpt" src="static/js/alogrith.js"></script>
+
+	</head>
+	<body>
+	
+		<nav class="navbar navbar-inverse" id="header" data-spy="affix" data-offset-top="1"><!--TOP-->
+			<div class="navbar-header" id="topLeft">
+				<a href="/">
+					<img id="logo" src="static/images/Logo Reverse.png">
+				</a>
+				<button id="collapse" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topRight">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+			</div>
+			
+			
+			<div class="collapse navbar-collapse navbar-right" id="topRight">
+				<ul class="nav navbar-nav" id="navList">
+					<li><a href="/">Home</a></li>
+					<li><a href="/recipe">Recipe</a></li>
+					<li class="active1"><a href="/health">My Health</a></li>
+					<li><a href="/fun">Fun</a></li>
+					<li><a href="/community">Community</a></li>
+				</ul>
+				{% if user != null%}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color:{{ user["displaypicturecolor"] }}">
+                        <img id="displayPic"src="{{ user['displaypicture'] }}">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi, <span>{{ user["firstname"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/profile"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% elif admin != null %}
+                    <div id="usernameBox" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #FF7200">
+                        <img id="displayPic" src="/static/images/admin.png">
+                    </div>
+                    <ul id="profileDropdown" class="dropdown-menu">
+                        <li class="disabled"><a id="dropdownUsernameLink">Hi Admin, <span>{{ admin["username"] }}</span></a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdownLink" href="/login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Sign out</a></li>
+                    </ul>
+                {% else %}
+                    <a type="button" class="btn btn-default" id="loginButton" href="/login">Sign In</a>
+                {% endif %}
+			</div>
+		</nav>
+        {% from "includes/_formhelper.html" import render_field %}
+	
+	
+		<div class="parent-div"><!--BODY-->
+            <br><br><br><br><br>
+            <h1 id="title">My Health</h1>
+            <br><br><br>
+			<div class="bmi">
+
+				<script type="text/javascript" src="static/js/bmi.js"></script>
+
+				<h1> BMI Calculator </h1>
+				<p>Enter your height (cm): <input type="number" id="height" multiple/></p>
+				<p>Enter your weight( kg): <input type="number" id="weight" multiple/></p>
+				<input type="submit" value="Calculate" onclick="computeBMI();" id="button1">
+				<h1 style="text-align: center">Body Mass Index: </h1>
+                <h1 style="text-align:center;"><span id="output">?</span></h1>
+				<h2 style="text-align:center;"><span id="comment"></span></h2>
+
+			</div>
+
+            {% if admin != null %}
+                <br><br>
+                <div class="add_container" style="background-color: white;">
+                    <h1 style="text-align: center;">New Workouts</h1>
+                    <form method="POST" action="">
+                        {{ render_field(addW.name, class='form-control', required='required', placeholder='e.g. Cycling') }}
+                        {{ render_field(addW.photo, class='form-control', required='required') }}
+                        {{ render_field(addW.duration, class='form-control', required='required', placeholder='e.g 30') }}
+                        {{ render_field(addW.kcal_burn, class='form-control', required='required', placeholder="e.g 420") }}
+                        {{ render_field(addW.forBMI, class='form-control', required='required', placeholder="e.g 18-22") }}
+                        {{ render_field(addW.submit, class='btn btn-default', required='required', value='Submit') }}
+                    </form>
+                    <p style="font-size: 8px;">*Add as Admin</p>
+                </div>
+            {% endif %}
+
+            <br><br>
+
+
+            {% if user != null %}
+                <div id="chartContainer" style="width:80%; height:280px; opacity: 0.9; margin: 0 auto"></div>
+                <div style = "text-align:center;"><br>
+                    <span style="opacity: 1; font-size: 20px;">
+                        <strong>Enter Updated BMI: </strong><input id="newdp" type="number" style="border-radius: 3px; border: none">
+                        <button id="addDataPoint">Update</button>
+                    </span>
+                </div>
+                <br><br>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                <div class="reco">
+                    <div class="diet">
+                        <table id="table1">
+                            <caption>Your Recommended Foods</caption>
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Food</th>
+                                    <th>Calories (per 100g)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Ddata"></tbody>
+                        </table>
+                    </div>
+                    <br><br>
+                    <div class="workout">
+                        <table id="table2">
+                            <caption>Your Recommended Workout</caption>
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Workout</th>
+                                    <th>Duration</th>
+                                    <th>Calories Burned</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Wdata"></tbody>
+                        </table>
+                    </div>
+                    <br><br>
+                </div>
+            {% endif %}
+        </div>
+		
+		{% include 'includes/_footer.html' %}
+    <script>
+        {% if admin == null %}
+            namer = {{ namer|safe }};
+            name1 ={{ name1|safe }};
+
+        {% endif %}
+        {% if user != null %}
+            user = {{ user|safe }};
+            firstRun();
+        {% endif %}
+    </script>
+	</body>
+</html>
+

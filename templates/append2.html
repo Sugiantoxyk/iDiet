@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>iDiet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" href="/static/images/Board.png">
+		<link href="/static/css/skeleton.css" rel="stylesheet">
+		<link href="/static/css/community.css" rel="stylesheet">
+		<link href="/static/css/forums.css" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/footer.css") }}" rel="stylesheet">
+        <link href="{{ url_for("static", filename="css/navbar.css") }}" rel="stylesheet">
+        <script>
+            var i = "{{ i }}";
+            var userID = "{{ userID|safe }}";
+            function postComment(){
+                $.getJSON("/addComment", {comment: $("#comment").val(), posterRID: i, userID: userID}, function(hello){
+                    if(hello == false){
+                        alert("Please login as a user to post comment.");
+                    }
+                });
+                location.reload();
+            }
+        </script>
+	</head>
+	<body>
+		{% include 'includes/_community_navbar.html' %}
+		<div><!--BODY-->
+			<div class="container bordergrey">
+				<br/><br/><br/><br/><br/>
+				<div class="Breadcrumb">
+					<a href="/community" class="BreadcrumbHome">Community</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<a href="/community/recipes" class="BreadcrumbHome">Recipes</a>&nbsp;<span class="glyphicon glyphicon-menu-right"></span>&nbsp;<span class="BreadcrumbHere"> {{ named }} </span>
+				</div>
+				<br/><br/>
+				<img src="/static/images/board.png" alt="board" width="128px" style="float: left;"/>
+				<br/>
+				<p class="head" id="named">{{ named }}</p>
+				<hr/>
+				<br/><br/><br/>
+				<img src="{{ posterR['displaypicture'] }}" alt="PROFILE" style="float: left; border: 1px solid white; width: 96px;height: 96px; background-color: {{ posterR['displaypicturecolor'] }}">
+
+				<p class="juicy">&nbsp {{ posterR["firstname"]}} {{posterR["lastname"]}}</p>
+				<p class="juicy"><b>&nbsp User  </b></p>
+				<br/><br/><br/>
+                <p class="juicy"><span class="orange"> Type:</span> <span id="typed">{{ typed }}</span></p>
+                <p class="juicy"><span class="orange"> Preparation Time:</span><span id="prep_timed">{{ prep_timed }}</span> minutes</p>
+                <p class="juicy"><span class="orange"> Cooking Time:</span><span id="cooking_timed">{{ cooking_timed }}</span> minutes </p>
+                <p class="juicy"><span class="orange"> Calories (per serving): </span> <span id="caloried">{{ caloried }}</span> </p>
+                <p class="juicy"><span class="orange"> Ingredients: </span> <span id="ingrediented">{{ ingrediented }}</span> </p>
+                <p class="juicy newline"><span class="orange"> Recipe:</span><br/><span id="reciped">{{ reciped }}</span></p>
+				<br/><br/><br/>
+                {% if userID == postID %}
+                    <button type="button" id="recipeBtn" class="btn btn-default editBtn" data-toggle="modal" data-target="#editGeneral">Edit</button>
+                {% endif %}
+                <div class="modal fade" id="editGeneral" role="dialog">
+                    <div class="modal-dialog modal-lg" style="padding-top: 100px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title black">Edit Post</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div>
+                                        <label for="Rnamed" class="black">Name: </label>
+                                        <input type="text" class="form-control" id="Rnamed" placeholder="e.g. Chicken Tikka Masala" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Rtyped" class="black">Type: </label>
+                                        <select id="Rtyped" class="form-control black">
+                                            <option value="Healthy">Healthy</option>
+                                            <option value="Unhealthy">Unhealthy</option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Rprep_timed" class="black">Preparation Time: </label>
+                                        <input type="number" class="form-control" id="Rprep_timed" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Rcooking_timed" class="black">Cooking Time: </label>
+                                        <input type="number" class="form-control" id="Rcooking_timed" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Rcaloried" class="black">Calories (per serving): </label>
+                                        <input type="text" class="form-control" id="Rcaloried" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Ringrediented" class="black">Ingredients: </label>
+                                        <input type="text" class="form-control" id="Ringrediented" placeholder="e.g. Chicken,Yogurt,Cream,Tomato,Onion,Garlic,Ginger,Chili pepper,Coconut" />
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="Rreciped" class="black">Recipe: </label>
+                                        <textarea class="form-control" id="Rreciped" rows="8"></textarea>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" id="updatePostR">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<hr/>
+				<br/><br/><br/>
+
+                {% for i in comments %}
+                <img src="{{ alluser[comments[i]["userID"]]["displaypicture"] }}" style="float:left; border: 1px solid white; width: 32px;height: 32px; background-color: {{ alluser[comments[i]["userID"]]["displaypicturecolor"] }};"
+                <br/><br/><br/><br/><br/>
+                <p class="juicy newline">{{ comments[i]["comment"] }}</p>
+                <p style="float: right"><i>commented by {{ alluser[comments[i]["userID"]]["firstname"]+" "+alluser[comments[i]["userID"]]["lastname"] }}</i></p>
+                    <br/>
+                    <hr/>
+                {% endfor %}
+
+				<label for="comment"></label><p style="font-size: 20px;">Comments</p>
+				<textarea class="form-control" rows="5" id="comment"></textarea>
+				<br/>
+				<input type="submit" class="btn btn-default" onclick="postComment()"/>
+				<br/><br/><br/>
+				<hr/>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</div>
+		</div>
+
+		<!--BOTTOM-->
+        {% include 'includes/_footer.html' %}
+        <script>
+            var l = "{{ i }}";
+            $("#recipeBtn").click(function(){
+                $("#Rnamed").val($("#named").text());
+                $("#Rtyped").val($("#typed").text());
+                $("#Rprep_timed").val($("#prep_timed").text());
+                $("#Rcooking_timed").val($("#cooking_timed").text());
+                $("#Rcaloried").val($("#caloried").text());
+                $("#Ringrediented").val($("#ingrediented").text());
+                $("#Rreciped").val($("#reciped").text());
+            });
+
+                $("#updatePostR").click(function (){
+                    var name = $("#Rnamed").val();
+                    var type = $("#Rtyped").val();
+                    var prep_time = $("#Rprep_timed").val();
+                    var cooking_time = $("#Rcooking_timed").val();
+                    var calorie = $("#Rcaloried").val();
+                    var ingredients = $("#Ringrediented").val();
+                    var recipe = $("#Rreciped").val();
+                    $.getJSON("/recipeUpdate", {name: name,type: type,prep_time: prep_time,cooking_time: cooking_time,calorie: calorie,ingredients: ingredients,recipe: recipe, posterR: l}, function(){
+                        location.replace("http://127.0.0.1:5000/community/recipes");
+                    })
+                })
+        </script>
+
+
+	</body>
+</html>
